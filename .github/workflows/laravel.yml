@@ -16,8 +16,8 @@ jobs:
       with:
         php-version: '8.1'
     - uses: actions/checkout@v3
-    - name: Enter Directory
-      run: cd backend
+    - name: Setup and run tests
+      working-directory: ./backend
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
