@@ -5,7 +5,7 @@ networks:
 
 
 services:
-  backend:
+  php:
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -13,6 +13,20 @@ services:
       - 9000:9000
     volumes:
       - ./backend:/app/api
+    networks:
+      - faisaldev
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 80:3000
+    volumes:
+      - ./frontend:/app/frontend
+      - /app/frontend/node_modules
+      - /app/frontend/.nuxt 
+    restart: unless-stopped
     networks:
       - faisaldev
 
